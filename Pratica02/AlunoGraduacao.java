@@ -39,6 +39,16 @@ public class AlunoGraduacao extends Aluno {
         // é possível reaproveitar o método ehNotaNumericaValida(valor) herdado de Aluno?
         // Por outro lado, se estiver tudo certo, chame super.lancarNota(valor) para a
         // superclasse guardar a nota na lista.
+        if (getNotas().size() >= TOTAL_UNIDADES){
+            System.out.println("[aviso] O curso de graduação tem apenas " + TOTAL_UNIDADES + " unidades. Nota ignorada: " + valor);
+            return;
+        }
+        if (!ehNotaNumericaValida(valor)){
+            System.out.println("[aviso] Nota invalida (use um numero de 0 a 10). Nota ignorada: " + valor);
+            return;
+        }
+
+        super.lancarNota(valor);
     }
 
     // Auxiliar private, como em AlunoTecnico: para o cliente, quem responde é
@@ -46,7 +56,13 @@ public class AlunoGraduacao extends Aluno {
     private double getMedia() {
         // TODO 2.2: some as notas de getNotas() usando
         // converterParaNumero(nota) e divida por TOTAL_UNIDADES.
-        return 0.0;
+        double soma = 0.0;
+
+        for (String nota : getNotas()){
+            soma += converterParaNumero(nota);
+        }
+
+        return soma / TOTAL_UNIDADES;
     }
 
     @Override
@@ -54,13 +70,17 @@ public class AlunoGraduacao extends Aluno {
         // TODO 2.3: aplique a regra da graduação usando MEDIA_APROVACAO e
         // MEDIA_REPROVACAO. Devolva APROVADO, RECUPERACAO ou REPROVADO
         // (constantes herdadas de Aluno).
-        return NAO_AVALIADO;
+        if (getMedia() >= MEDIA_APROVACAO){
+            return APROVADO;
+        }
+
+        return REPROVADO;
     }
 
     @Override
     public String getDesempenho() {
         // TODO 2.4: devolva algo como "Média: 7,50" (veja String.format).
-        return "";
+        return String.format("Media: %.2f", getMedia());
     }
 
     @Override
@@ -73,6 +93,7 @@ public class AlunoGraduacao extends Aluno {
         // menos 1) e converta o total em ano + período: cada 2 semestres
         // avançam 1 ano em getAnoInicio(), e o resto da divisão por 2 diz se o
         // aluno está no período 1 ou no 2.
+        
         return "";
     }
 
