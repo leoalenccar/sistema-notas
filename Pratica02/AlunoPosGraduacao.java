@@ -29,6 +29,13 @@ public class AlunoPosGraduacao extends Aluno {
         // maiúsculas/minúsculas) e recuse um segundo lançamento de conceito,
         // sempre imprimindo um aviso antes de sair do método.
         // Quando o valor for válido, chame super.lancarNota(...) para guardá-lo.
+        if (getConceito() == "-") {
+            if (valor == "A" || valor == "B" || valor == "C" || valor == "D") {
+                super.lancarNota(valor);
+            }
+        } else {
+            System.err.println("[aviso] O aluno já possui conceito resgistrado.");
+        }
     }
 
     /**
@@ -38,7 +45,11 @@ public class AlunoPosGraduacao extends Aluno {
     private String getConceito() {
         // TODO 3.2: devolva o primeiro item de getNotas(), ou "-" se a lista
         // ainda estiver vazia.
-        return "-";
+        if (!getNotas().isEmpty()) {
+            return getNotas().get(0);
+        } else {
+            return "-";
+        }
     }
 
     @Override
@@ -46,19 +57,28 @@ public class AlunoPosGraduacao extends Aluno {
         // TODO 3.3: A ou B aprovado, C recuperação, D reprovado.
         // Decida também o que responder quando o conceito ainda não foi lançado
         // e explique a decisão em um comentário curto.
-        return NAO_AVALIADO;
+        if (getConceito() == "A" || getConceito() == "B") {
+            return APROVADO;
+        } else if (getConceito() == "C") {
+            return RECUPERACAO;
+        } else if (getConceito() == "D") {
+            return REPROVADO;
+        } else {
+            System.out.println("[aviso] O conceito ainda não foi contabilizado. Aguarde.");
+            return NAO_AVALIADO;
+        }
     }
 
     @Override
     public String getDesempenho() {
         // TODO 3.4: devolva algo como "Conceito: B".
-        return "";
+        return ("Conceito: " + getConceito());
     }
 
     @Override
     public String getPeriodoAtual() {
         // TODO 3.5: devolva algo como "8o mês".
-        return "";
+        return (MES_ATUAL + "o mês");
     }
 
     @Override
@@ -66,18 +86,20 @@ public class AlunoPosGraduacao extends Aluno {
         // TODO 3.6: em qual mês de curso o aluno está? Aqui a conta é a mais
         // direta das três: getMesesDecorridos() (herdado de Aluno) já está em
         // meses, e quem acabou de entrar está no 1o mês.
+        System.out.println(getMesesDecorridos() + " meses decorridos");
         return 0;
     }
 
     @Override
     public int getPrazoMaximo() {
         // TODO item 3.7
-        return 0;
+        System.out.println("Prazo máximo: " + PRAZO_MAXIMO_MESES);
+        return PRAZO_MAXIMO_MESES;
     }
 
     @Override
     public String getUnidadeDePrazo() {
         // TODO item 3.8
-        return "";
+        return "mês/meses";
     }
 }
