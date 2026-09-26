@@ -32,6 +32,8 @@ public class AlunoPosGraduacao extends Aluno {
         if (getConceito() == "-") {
             if (valor == "A" || valor == "B" || valor == "C" || valor == "D") {
                 super.lancarNota(valor);
+            } else {
+                System.err.println("[aviso] Nota inválida. Use os conceitos de A a D. Conceito inserido: " + valor);
             }
         } else {
             System.err.println("[aviso] O aluno já possui conceito resgistrado.");
@@ -64,7 +66,7 @@ public class AlunoPosGraduacao extends Aluno {
         } else if (getConceito() == "D") {
             return REPROVADO;
         } else {
-            System.out.println("[aviso] O conceito ainda não foi contabilizado. Aguarde.");
+            System.err.println("[aviso] O conceito ainda não foi contabilizado. Tente novamente.");
             return NAO_AVALIADO;
         }
     }
@@ -78,7 +80,7 @@ public class AlunoPosGraduacao extends Aluno {
     @Override
     public String getPeriodoAtual() {
         // TODO 3.5: devolva algo como "8o mês".
-        return (MES_ATUAL + "o mês");
+        return (getMesesDecorridos() - getMesInicio() + "o mês");
     }
 
     @Override
