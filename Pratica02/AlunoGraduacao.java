@@ -93,8 +93,22 @@ public class AlunoGraduacao extends Aluno {
         // menos 1) e converta o total em ano + período: cada 2 semestres
         // avançam 1 ano em getAnoInicio(), e o resto da divisão por 2 diz se o
         // aluno está no período 1 ou no 2.
-        
-        return "";
+    
+        int periodoEntrada;
+        if (getMesInicio() <= 6) {
+            periodoEntrada = 1;
+        } else {
+            periodoEntrada = 2;
+        }
+
+        int semestresAndados = getTempoDecorrido() - 1;
+
+        int total = (periodoEntrada - 1) + semestresAndados;
+
+        int ano = getAnoInicio() + total / 2;
+        int periodo = total % 2 + 1;
+
+        return ano + "." + periodo;
     }
 
     @Override
@@ -103,18 +117,18 @@ public class AlunoGraduacao extends Aluno {
         // (herdado de Aluno): cada 6 meses é um semestre completo e quem
         // acabou de entrar já está no 1o. Compare com getTempoDecorrido() de
         // AlunoTecnico, que faz a mesma conta em anos.
-        return 0;
+        return getMesesDecorridos() / 6 + 1;
     }
 
     @Override
     public int getPrazoMaximo() {
         // TODO 2.7
-        return 0;
+        return PRAZO_MAXIMO_SEMESTRES;
     }
 
     @Override
     public String getUnidadeDePrazo() {
         // TODO 2.8: a unidade de tempo deste tipo de aluno.
-        return "";
+        return "semestre(s)";
     }
 }
