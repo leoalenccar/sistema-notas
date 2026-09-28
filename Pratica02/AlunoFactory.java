@@ -25,7 +25,7 @@ public class AlunoFactory {
 
     public static Aluno criar(String tipo, String matricula, String nome) {
         if (tipo == null) {
-            System.out.println("[aviso] Tipo de aluno nao informado.");
+            System.out.println("[aviso] Tipo de aluno nao desconhecido: " + tipo + ". Tipos validos: " + getTiposDisponiveis());
             return null;
         }
 
@@ -34,9 +34,16 @@ public class AlunoFactory {
         if (chave.equals("TECNICO")) {
             return new AlunoTecnico(matricula, nome);
         }
+
         // TODO 4.1: "GRADUACAO" deve criar um AlunoGraduacao.
+        if (chave.equals("GRADUACAO")) {
+            return new AlunoGraduacao(matricula, nome);
+        }
 
         // TODO 4.2: "POS" deve criar um AlunoPosGraduacao.
+        if (chave.equals("POS")) {
+            return new AlunoPosGraduacao(matricula, nome);
+        }
 
         // TODO 4.3: quando o tipo nao for reconhecido, imprima um aviso
         // informando os tipos validos com getTiposDisponiveis() e retorne null.
@@ -49,6 +56,6 @@ public class AlunoFactory {
     public static String getTiposDisponiveis() {
         // TODO 4.4: mantenha esta lista em dia conforme voce registra os tipos:
         // Ex.: "TECNICO, GRADUACAO, NOVO TIPO"
-        return "TECNICO";
+        return "TECNICO, GRADUCAO, POS";
     }
 }
