@@ -25,7 +25,7 @@ public class AlunoFactory {
 
     public static Aluno criar(String tipo, String matricula, String nome) {
         if (tipo == null) {
-            System.out.println("[aviso] Tipo de aluno nao informado.");
+            System.out.println("[aviso] Tipo de aluno nao desconhecido: " + tipo + ". Tipos validos: " + getTiposDisponiveis());
             return null;
         }
 
@@ -33,26 +33,29 @@ public class AlunoFactory {
 
         if (chave.equals("TECNICO")) {
             return new AlunoTecnico(matricula, nome);
-        } else if (chave.equals("GRADUACAO")) {
-            // TODO 4.1: "GRADUACAO" deve criar um AlunoGraduacao.
-
-        } else if (chave.equals("POSGRADUACAO")) {
-            // TODO 4.2: "POS" deve criar um AlunoPosGraduacao.
-            return new AlunoPosGraduacao(matricula, nome);
-        } else {
-            System.err.println("[aviso] Tipo de aluno inválido. Tente novamente com os seguintes tipos de aluno: "
-                    + getTiposDisponiveis());
         }
-        return null;
+
+        // TODO 4.1: "GRADUACAO" deve criar um AlunoGraduacao.
+        if (chave.equals("GRADUACAO")) {
+            return new AlunoGraduacao(matricula, nome);
+        }
+
+        // TODO 4.2: "POS" deve criar um AlunoPosGraduacao.
+        if (chave.equals("POS")) {
+            return new AlunoPosGraduacao(matricula, nome);
+        }
+
         // TODO 4.3: quando o tipo nao for reconhecido, imprima um aviso
         // informando os tipos validos com getTiposDisponiveis() e retorne null.
 
         // Para pensar: faria sentido implementar switch case aqui?
+
+        return null;
     }
 
     public static String getTiposDisponiveis() {
         // TODO 4.4: mantenha esta lista em dia conforme voce registra os tipos:
         // Ex.: "TECNICO, GRADUACAO, NOVO TIPO"
-        return "TECNICO, POSGRADUACAO";
+        return "TECNICO, GRADUCAO, POS";
     }
 }
