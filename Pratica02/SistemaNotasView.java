@@ -81,6 +81,10 @@ public class SistemaNotasView {
         lovelace.setInicioDoCurso("03/2020");
         turma.add(lovelace);
 
+        Aluno eduarda = AlunoFactory.criar("INTERCAMBIO", "2026027", "EduardaFarias");
+        eduarda.setInicioDoCurso("09/2025"); // 6 meses de curso: dentro do prazo de 12
+        turma.add(eduarda);
+
         // Lançamento de notas: a MESMA chamada serve para qualquer tipo de
         // aluno. Cada objeto interpreta o valor recebido a sua maneira.
         lancarNotas(turma.get(0), "8.0", "7.5", "6.0", "9.0");
@@ -91,6 +95,11 @@ public class SistemaNotasView {
 
         lancarNotas(turma.get(2), "7.8", "6.2", "9.1");
         lancarNotas(turma.get(3), "B");
+
+        lancarNotas(bohr, "5.0", "4.5", "5.5");
+        lancarNotas(lovelace, "C");
+
+        lancarNotas(eduarda, "8.0", "7.0");
 
         return turma;
     }
@@ -147,6 +156,8 @@ public class SistemaNotasView {
         for (String s : situacoes) {
             System.out.println(s + ": " + situacoesAlunos.get(s));
         }
+
+        System.out.println();
     }
 
     /**
@@ -194,15 +205,15 @@ public class SistemaNotasView {
         Aluno a = AlunoFactory.criar("TECNICO", "2025008", "Heinrich Hertz");
         a.setInicioDoCurso("03/2025");
         a.lancarNota("10.0");
-        System.out.println(a.getSituacao());
+        System.out.println(a.getClass().getSimpleName() + " -> " + a.getSituacao());
 
         a = AlunoFactory.criar("POS", "2026009", "Isaac Newton");
         a.setInicioDoCurso("01/2026");
         a.lancarNota("A");
-        System.out.println(a.getSituacao());
+        System.out.println(a.getClass().getSimpleName() + " -> " + a.getSituacao());
 
         a = new Aluno("2026010", "Caroline Herschel");
-        System.out.println(a.getSituacao());
+        System.out.println(a.getClass().getSimpleName() + " -> " + a.getSituacao());
 
         a.getClass().getSimpleName();
 
@@ -266,5 +277,7 @@ public class SistemaNotasView {
         doisConceitos.lancarNota("A");
         doisConceitos.lancarNota("D");
         System.out.println("Notas guardadas: " + doisConceitos.getNotas());
+
+        System.out.println();
     }
 }

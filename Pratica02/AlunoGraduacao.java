@@ -75,7 +75,9 @@ public class AlunoGraduacao extends Aluno {
         if (getMedia() >= MEDIA_APROVACAO) {
             return APROVADO;
         }
-
+        if (getMedia() >= MEDIA_REPROVACAO) {
+            return RECUPERACAO;
+        }
         return REPROVADO;
     }
 

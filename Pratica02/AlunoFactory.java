@@ -54,12 +54,14 @@ public class AlunoFactory {
 
         // Para pensar: faria sentido implementar switch case aqui?
 
+        System.out.println("[aviso] Tipo de aluno nao conhecido: " + tipo + ". Tipos validos: " + getTiposDisponiveis());
+
         return null;
     }
 
     public static String getTiposDisponiveis() {
         // TODO 4.4: mantenha esta lista em dia conforme voce registra os tipos:
         // Ex.: "TECNICO, GRADUACAO, NOVO TIPO"
-        return "TECNICO, GRADUCAO, POS, INTERCAMBIO";
+        return "TECNICO, GRADUACAO, POS, INTERCAMBIO";
     }
 }

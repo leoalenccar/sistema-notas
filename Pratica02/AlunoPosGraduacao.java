@@ -29,14 +29,19 @@ public class AlunoPosGraduacao extends Aluno {
         // maiúsculas/minúsculas) e recuse um segundo lançamento de conceito,
         // sempre imprimindo um aviso antes de sair do método.
         // Quando o valor for válido, chame super.lancarNota(...) para guardá-lo.
-        if (getConceito() == "-") {
-            if (valor == "A" || valor == "B" || valor == "C" || valor == "D") {
-                super.lancarNota(valor);
+        String conceito = "";
+        if (valor != null) {
+            conceito = valor.trim().toUpperCase();
+        }
+
+        if (getConceito().equals("-")) {
+            if (conceito.equals("A") || conceito.equals("B") || conceito.equals("C") || conceito.equals("D")) {
+                super.lancarNota(conceito);
             } else {
                 System.err.println("[aviso] Nota inválida. Use os conceitos de A a D. Conceito inserido: " + valor);
             }
         } else {
-            System.err.println("[aviso] O aluno já possui conceito resgistrado.");
+            System.err.println("[aviso] O aluno já possui conceito registrado.");
         }
     }
 
@@ -59,15 +64,16 @@ public class AlunoPosGraduacao extends Aluno {
         // TODO 3.3: A ou B aprovado, C recuperação, D reprovado.
         // Decida também o que responder quando o conceito ainda não foi lançado
         // e explique a decisão em um comentário curto.
-        if (getConceito() == "A" || getConceito() == "B") {
+        if (getConceito().equals("A") || getConceito().equals("B")) {
             return APROVADO;
-        } else if (getConceito() == "C") {
+        } else if (getConceito().equals("C")) {
             return RECUPERACAO;
-        } else if (getConceito() == "D") {
+        } else if (getConceito().equals("D")) {
             return REPROVADO;
         } else {
-            System.err.println("[aviso] O conceito ainda não foi contabilizado. Tente novamente.");
             return NAO_AVALIADO;
+            // nao deve imprimir mensagem pois eh um getter
+            // retorna nao avaliado pois nao teve um conceito valido
         }
     }
 
@@ -80,7 +86,7 @@ public class AlunoPosGraduacao extends Aluno {
     @Override
     public String getPeriodoAtual() {
         // TODO 3.5: devolva algo como "8o mês".
-        return getMesesDecorridos() - getMesInicio() + "o mês";
+        return getTempoDecorrido() + "o mês";
     }
 
     @Override
@@ -88,7 +94,7 @@ public class AlunoPosGraduacao extends Aluno {
         // TODO 3.6: em qual mês de curso o aluno está? Aqui a conta é a mais
         // direta das três: getMesesDecorridos() (herdado de Aluno) já está em
         // meses, e quem acabou de entrar está no 1o mês.
-        return getMesesDecorridos();
+        return getMesesDecorridos() + 1;
     }
 
     @Override

@@ -36,7 +36,6 @@ public class AlunoIntercambio extends Aluno {
         for (String nota : getNotas()) {
             soma += converterParaNumero(nota);
         }
-        // Divide sempre por 4: bimestre sem nota lançada conta como zero.
         return soma / TOTAL_AVALIACOES;
     }
 
@@ -55,13 +54,12 @@ public class AlunoIntercambio extends Aluno {
 
     @Override
     public String getPeriodoAtual() {
-        // TODO 3.5: devolva algo como "8o mês".
-        return getMesesDecorridos() - getMesInicio() + "o mês";
+        return getTempoDecorrido() + "o mês";
     }
 
     @Override
     public int getTempoDecorrido() {
-        return getMesesDecorridos();
+        return getMesesDecorridos() + 1;
     }
 
     @Override
