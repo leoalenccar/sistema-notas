@@ -134,10 +134,19 @@ public class SistemaNotasView {
         System.out.println("===== RESUMO POR SITUACAO =====");
         String[] situacoes = { Aluno.APROVADO, Aluno.RECUPERACAO, Aluno.REPROVADO, Aluno.NAO_AVALIADO };
         HashMap<String, Integer> situacoesAlunos = new HashMap<>();
-        for (Aluno aluno : turma) {
-            situacoesAlunos.get(aluno.getSituacao());
+
+        for (String s : situacoes) {
+            situacoesAlunos.put(s, 0);
         }
-        System.out.println();
+
+        for (Aluno aluno : turma) {
+            String s = aluno.getSituacao();
+            situacoesAlunos.put(s, situacoesAlunos.get(s) + 1);
+        }
+
+        for (String s : situacoes) {
+            System.out.println(s + ": " + situacoesAlunos.get(s));
+        }
     }
 
     /**
@@ -213,19 +222,32 @@ public class SistemaNotasView {
         System.out.println("Tipos aceitos pela fabrica: " + AlunoFactory.getTiposDisponiveis());
 
         Aluno desconhecido = AlunoFactory.criar("MESTRADO", "2026011", "Katherine Johnson");
-        System.out.println("Aluno criado para o tipo MESTRADO: " + desconhecido);
+        if (desconhecido == null) {
+            System.out.println("Nenhum aluno criado para o tipo MESTRADO (criar devolveu null).");
+        } else {
+            System.out.println("Aluno criado para o tipo MESTRADO: " + desconhecido);
+        }
 
         Aluno concInvalido = AlunoFactory.criar("POS", "2026012", "Benoît Mandelbrot");
         System.out.println("Lançando um conceito inválido na pós-graduação: ");
         concInvalido.lancarNota("E");
+        System.out.println("Conceito lancado: " + concInvalido.getNotas());
 
         Aluno notaInvalidaETextoInvalido = AlunoFactory.criar("GRADUACAO", "2026013", "Marie Curie");
         System.out.println("Colocando uma nota fora do intervalo válido e inserindo um texto que não é número: ");
-        notaInvalidaETextoInvalido.lancarNota("10 11.7 J");
+        System.out.println("Nota fora do intervalo:");
+        notaInvalidaETextoInvalido.lancarNota("11.7");
+        System.out.println("Texto que nao e numero:");
+        notaInvalidaETextoInvalido.lancarNota("J");
+        System.out.println("Notas guardadas: " + notaInvalidaETextoInvalido.getNotas());
 
         Aluno excessoNotas = AlunoFactory.criar("GRADUACAO", "2026014", "Nicolau Copérnico");
         System.out.println("Colocando notas acima da quantidade válida de notas: ");
-        excessoNotas.lancarNota("10 8.9 9 7.3");
+        String[] notas = { "10", "8.9", "9", "7.3" };
+        for (String n : notas) {
+            excessoNotas.lancarNota(n);
+        }
+        System.out.println("Notas guardadas: " + excessoNotas.getNotas());
 
         // TODO 5.7: acrescente os demais casos de borda.
 
