@@ -69,9 +69,9 @@ Veja o enunciado completo em `Pratica02.pdf`. Em resumo:
 
 ## PREENCHA ABAIXO (item 7)
 
-**Nomes:**
+**Nomes: Arthur Victor Vieira Almeida, Leonardo Alencar de Aquino**
 
-**Matrículas:**
+**Matrículas: 20250031568, 20250048986**
 
 **Versão do JDK utilizada:** (saída de `java -version`)
 
