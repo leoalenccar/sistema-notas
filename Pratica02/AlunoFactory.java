@@ -25,7 +25,7 @@ public class AlunoFactory {
 
     public static Aluno criar(String tipo, String matricula, String nome) {
         if (tipo == null) {
-            System.out.println("[aviso] Tipo de aluno nao desconhecido: " + tipo + ". Tipos validos: " + getTiposDisponiveis());
+            System.out.println("[aviso] Tipo de aluno nao conhecido: " + tipo + ". Tipos validos: " + getTiposDisponiveis());
             return null;
         }
 

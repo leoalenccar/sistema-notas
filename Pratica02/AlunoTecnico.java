@@ -22,15 +22,13 @@ public class AlunoTecnico extends Aluno {
     public void lancarNota(String valor) {
         if (getNotas().size() >= TOTAL_BIMESTRES) {
             System.out.println(
-                "[aviso] O curso tecnico tem apenas " + TOTAL_BIMESTRES
-                + " bimestres. Nota ignorada: " + valor
-            );
+                    "[aviso] O curso tecnico tem apenas " + TOTAL_BIMESTRES
+                            + " bimestres. Nota ignorada: " + valor);
             return;
         }
         if (!ehNotaNumericaValida(valor)) {
             System.out.println(
-                "[aviso] Nota invalida (use um numero de 0 a 10). Nota ignorada: " + valor
-            );
+                    "[aviso] Nota invalida (use um numero de 0 a 10). Nota ignorada: " + valor);
             return;
         }
         super.lancarNota(valor); // a superclasse guarda a nota na lista

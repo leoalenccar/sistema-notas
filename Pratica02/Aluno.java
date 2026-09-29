@@ -139,8 +139,7 @@ public class Aluno {
     public void setInicioDoCurso(String inicio) {
         if (inicio == null || !inicio.trim().matches("\\d{1,2}/\\d{4}")) {
             System.out.println(
-                "[aviso] Inicio de curso invalido (use mes/ano, ex.: 03/2020). Ignorado: " + inicio
-            );
+                    "[aviso] Inicio de curso invalido (use mes/ano, ex.: 03/2020). Ignorado: " + inicio);
             return;
         }
 
@@ -171,13 +170,12 @@ public class Aluno {
 
     public void imprimirInformacoes() {
         System.out.printf(
-            "%-10s %-22s %-10s %-22s %s%n",
-            getMatricula(),
-            getNome(),
-            getPeriodoAtual(),
-            getDesempenho(),
-            getSituacao()
-        );
+                "%-10s %-22s %-10s %-22s %s%n",
+                getMatricula(),
+                getNome(),
+                getPeriodoAtual(),
+                getDesempenho(),
+                getSituacao());
     }
 
     // ------------------------------------------------------------------

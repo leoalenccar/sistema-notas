@@ -126,15 +126,17 @@ public class SistemaNotasView {
      * TODO 5.4: conte quantos alunos estão em cada situação e imprima o resumo.
      * Sugestão: um HashMap<String, Integer> e o vetor de situações abaixo,
      * que usa as constantes de Aluno. Não use instanceof aqui.
+     * String[] situacoes = { Aluno.APROVADO, Aluno.RECUPERACAO, Aluno.REPROVADO,
+     * Aluno.NAO_AVALIADO };
      **/
 
     private static void imprimirResumoPorSituacao(ArrayList<Aluno> turma) {
         System.out.println("===== RESUMO POR SITUACAO =====");
-         String[] situacoes = { Aluno.APROVADO, Aluno.RECUPERACAO, Aluno.REPROVADO, Aluno.NAO_AVALIADO };
-    HashMap <String, Integer> situacoesAlunos = new HashMap<>();
-    for(Aluno aluno : turma){
-        
-    }
+        String[] situacoes = { Aluno.APROVADO, Aluno.RECUPERACAO, Aluno.REPROVADO, Aluno.NAO_AVALIADO };
+        HashMap<String, Integer> situacoesAlunos = new HashMap<>();
+        for (Aluno aluno : turma) {
+            situacoesAlunos.get(aluno.getSituacao());
+        }
         System.out.println();
     }
 
@@ -147,6 +149,13 @@ public class SistemaNotasView {
      */
     private static void imprimirAlertasDePrazo(ArrayList<Aluno> turma) {
         System.out.println("===== PRAZO DE INTEGRALIZACAO =====");
+        for (Aluno aluno : turma) {
+            System.out.println("Nome: " + aluno.getNome());
+            System.out.println("Prazo: " + aluno.getPrazo());
+            System.out.println("O aluno se encontra dentro do prazo? R: " + aluno.estaNoPrazo());
+            System.out.println("Tempo restante do curso: " + aluno.getTempoRestante());
+            System.out.println("Início do curso: " + aluno.getInicioDoCurso());
+        }
         System.out.println();
     }
 
@@ -173,6 +182,21 @@ public class SistemaNotasView {
      */
     private static void demonstrarTipoEstaticoEDinamico() {
         System.out.println("===== TIPO ESTATICO x TIPO DINAMICO =====");
+        Aluno a = AlunoFactory.criar("TECNICO", "2025008", "Heinrich Hertz");
+        a.setInicioDoCurso("03/2025");
+        a.lancarNota("10.0");
+        System.out.println(a.getSituacao());
+
+        a = AlunoFactory.criar("POS", "2026009", "Isaac Newton");
+        a.setInicioDoCurso("01/2026");
+        a.lancarNota("A");
+        System.out.println(a.getSituacao());
+
+        a = new Aluno("2026010", "Caroline Herschel");
+        System.out.println(a.getSituacao());
+
+        a.getClass().getSimpleName();
+
         System.out.println();
     }
 
@@ -192,9 +216,19 @@ public class SistemaNotasView {
         System.out.println("Aluno criado para o tipo MESTRADO: " + desconhecido);
 
         Aluno concInvalido = AlunoFactory.criar("POS", "2026012", "Benoît Mandelbrot");
+        System.out.println("Lançando um conceito inválido na pós-graduação: ");
         concInvalido.lancarNota("E");
 
+        Aluno notaInvalidaETextoInvalido = AlunoFactory.criar("GRADUACAO", "2026013", "Marie Curie");
+        System.out.println("Colocando uma nota fora do intervalo válido e inserindo um texto que não é número: ");
+        notaInvalidaETextoInvalido.lancarNota("10 11.7 J");
+
+        Aluno excessoNotas = AlunoFactory.criar("GRADUACAO", "2026014", "Nicolau Copérnico");
+        System.out.println("Colocando notas acima da quantidade válida de notas: ");
+        excessoNotas.lancarNota("10 8.9 9 7.3");
+
         // TODO 5.7: acrescente os demais casos de borda.
+
         System.out.println();
     }
 }

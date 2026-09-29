@@ -6,8 +6,8 @@
  * 
  * Nota final: soma das 3 notas de unidade dividida por 3.
  * 
- * Situação: 
- * - média >= 6,0 aprovado; 
+ * Situação:
+ * - média >= 6,0 aprovado;
  * - 4,0 <= média < 6,0 recuperação;
  * - média < 4,0 reprovado direto.
  *
@@ -36,14 +36,16 @@ public class AlunoGraduacao extends Aluno {
     public void lancarNota(String valor) {
         // TODO 2.1: recuse a nota quando o aluno já tiver TOTAL_UNIDADES notas lançadas
         // ou quando o valor não for uma nota numérica valida.
-        // é possível reaproveitar o método ehNotaNumericaValida(valor) herdado de Aluno?
+        // é possível reaproveitar o método ehNotaNumericaValida(valor) herdado de
+        // Aluno?
         // Por outro lado, se estiver tudo certo, chame super.lancarNota(valor) para a
         // superclasse guardar a nota na lista.
-        if (getNotas().size() >= TOTAL_UNIDADES){
-            System.out.println("[aviso] O curso de graduação tem apenas " + TOTAL_UNIDADES + " unidades. Nota ignorada: " + valor);
+        if (getNotas().size() >= TOTAL_UNIDADES) {
+            System.out.println(
+                    "[aviso] O curso de graduação tem apenas " + TOTAL_UNIDADES + " unidades. Nota ignorada: " + valor);
             return;
         }
-        if (!ehNotaNumericaValida(valor)){
+        if (!ehNotaNumericaValida(valor)) {
             System.out.println("[aviso] Nota invalida (use um numero de 0 a 10). Nota ignorada: " + valor);
             return;
         }
@@ -58,7 +60,7 @@ public class AlunoGraduacao extends Aluno {
         // converterParaNumero(nota) e divida por TOTAL_UNIDADES.
         double soma = 0.0;
 
-        for (String nota : getNotas()){
+        for (String nota : getNotas()) {
             soma += converterParaNumero(nota);
         }
 
@@ -70,7 +72,7 @@ public class AlunoGraduacao extends Aluno {
         // TODO 2.3: aplique a regra da graduação usando MEDIA_APROVACAO e
         // MEDIA_REPROVACAO. Devolva APROVADO, RECUPERACAO ou REPROVADO
         // (constantes herdadas de Aluno).
-        if (getMedia() >= MEDIA_APROVACAO){
+        if (getMedia() >= MEDIA_APROVACAO) {
             return APROVADO;
         }
 
@@ -93,7 +95,7 @@ public class AlunoGraduacao extends Aluno {
         // menos 1) e converta o total em ano + período: cada 2 semestres
         // avançam 1 ano em getAnoInicio(), e o resto da divisão por 2 diz se o
         // aluno está no período 1 ou no 2.
-    
+
         int periodoEntrada;
         if (getMesInicio() <= 6) {
             periodoEntrada = 1;

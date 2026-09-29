@@ -74,13 +74,13 @@ public class AlunoPosGraduacao extends Aluno {
     @Override
     public String getDesempenho() {
         // TODO 3.4: devolva algo como "Conceito: B".
-        return ("Conceito: " + getConceito());
+        return "Conceito: " + getConceito();
     }
 
     @Override
     public String getPeriodoAtual() {
         // TODO 3.5: devolva algo como "8o mês".
-        return (getMesesDecorridos() - getMesInicio() + "o mês");
+        return getMesesDecorridos() - getMesInicio() + "o mês";
     }
 
     @Override
@@ -88,14 +88,12 @@ public class AlunoPosGraduacao extends Aluno {
         // TODO 3.6: em qual mês de curso o aluno está? Aqui a conta é a mais
         // direta das três: getMesesDecorridos() (herdado de Aluno) já está em
         // meses, e quem acabou de entrar está no 1o mês.
-        System.out.println(getMesesDecorridos() + " meses decorridos");
-        return 0;
+        return getMesesDecorridos();
     }
 
     @Override
     public int getPrazoMaximo() {
         // TODO item 3.7
-        System.out.println("Prazo máximo: " + PRAZO_MAXIMO_MESES);
         return PRAZO_MAXIMO_MESES;
     }
 
