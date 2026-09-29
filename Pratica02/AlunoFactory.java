@@ -45,6 +45,10 @@ public class AlunoFactory {
             return new AlunoPosGraduacao(matricula, nome);
         }
 
+        if (chave.equals("INTERCAMBIO")) {
+            return new AlunoIntercambio(matricula, nome);
+        }
+
         // TODO 4.3: quando o tipo nao for reconhecido, imprima um aviso
         // informando os tipos validos com getTiposDisponiveis() e retorne null.
 
@@ -56,6 +60,6 @@ public class AlunoFactory {
     public static String getTiposDisponiveis() {
         // TODO 4.4: mantenha esta lista em dia conforme voce registra os tipos:
         // Ex.: "TECNICO, GRADUACAO, NOVO TIPO"
-        return "TECNICO, GRADUCAO, POS";
+        return "TECNICO, GRADUCAO, POS, INTERCAMBIO";
     }
 }
