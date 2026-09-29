@@ -251,6 +251,20 @@ public class SistemaNotasView {
 
         // TODO 5.7: acrescente os demais casos de borda.
 
-        System.out.println();
+        Aluno semTipo = AlunoFactory.criar(null, "2026019", "Leonardo Alencar");
+        if (semTipo == null) {
+            System.out.println("Nenhum aluno criado para tipo null.");
+        }
+
+        Aluno notaNegativa = AlunoFactory.criar("GRADUACAO", "2026018", "Arthur Victor");
+        System.out.println("Lancando nota negativa:");
+        notaNegativa.lancarNota("-1");
+        System.out.println("Notas guardadas: " + notaNegativa.getNotas());
+
+        Aluno doisConceitos = AlunoFactory.criar("POS", "2026017", "Grace Hopper");
+        System.out.println("Lancando dois conceitos:");
+        doisConceitos.lancarNota("A");
+        doisConceitos.lancarNota("D");
+        System.out.println("Notas guardadas: " + doisConceitos.getNotas());
     }
 }
