@@ -261,7 +261,7 @@ public class SistemaNotasView {
         notaNegativa.lancarNota("-1");
         System.out.println("Notas guardadas: " + notaNegativa.getNotas());
 
-        Aluno doisConceitos = AlunoFactory.criar("POS", "2026017", "Grace Hopper");
+        Aluno doisConceitos = AlunoFactory.criar("POS", "2026017", "Mateus Alves");
         System.out.println("Lancando dois conceitos:");
         doisConceitos.lancarNota("A");
         doisConceitos.lancarNota("D");
