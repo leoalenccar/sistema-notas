@@ -75,22 +75,38 @@ Veja o enunciado completo em `Pratica02.pdf`. Em resumo:
 
 **Versão do JDK utilizada:** (saída de `java -version`)
 
+java version "26.0.1" 2026-04-21 \
+Java(TM) SE Runtime Environment (build 26.0.1+8-34) \
+Java HotSpot(TM) 64-Bit Server VM (build 26.0.1+8-34, mixed mode, sharing)
+
 **Comandos para compilar e executar:**
 
 ```bash
-
+cd Pratica02
+javac -d out *.java
+java -cp out SistemaNotasView
 ```
 
 **Quarto tipo de aluno criado (item 5):** qual é, quais regras ele segue e
 quantos arquivos você precisou alterar fora da classe nova.
 
+O quarto tipo de aluno que foi criado é o AlunoIntercambio. Suas regras são que esse tipo de aluno possui um prazo máximo de permanência de 12 meses, que ele aceita no máximo duas notas para serem registradas e a sua média de aprovação é de >= 7.0. Foram necessários alterar 2 arquivos distintos fora da classe nova (o AlunoFactory.java e o SistemaNotasView.java) para o pleno funcionamento do código.
+
 **Por que o cliente consegue tratar todos os alunos do mesmo jeito?**
+
+O cliente consegue tratar todos os alunos do mesmo jeito pois a herança permite que as diferentes subclasses possam ser chamadas pelo cliente sem haver conflitos entre eles.
 
 **Por que o cliente não precisa de `instanceof` nem de casting em nenhum
 método?**
 
+O cliente não necessita de instanceof e nem de casting pois como o sistema utiliza a superclasse Aluno onde as suas subclasses possuem os mesmos métodos que o pai, utilizando o override para sobrescrever os métodos, então não é necessário ter que checar se os objetos criados no sistema pertencem à sua respectiva classe ou transformar esses objetos criados no sistema para alguma de suas subclasses.
+
 **Por que `getMedia()` é `private` nas subclasses e `getNotas()` devolve uma
 cópia da lista?**
 
+Isso é feito com o intuito de proteger as notas dos alunos, evitando que elas possam ser chamadas e/ou alteradas por qualquer um que tenha acesso ao sistema, garantindo a segurança e integridade dos dados.
+
 **O que acontece com um aluno cuja nota/conceito não foi lançado?** (descreva a
 decisão que você tomou)
+
+Para o tratamento do aluno cuja a nota/conceito não foi lançado, optamos por apenas retornar a sua situação como "Não avaliada", pois assim, se o aluno não foi avaliado por engano, então não há riscos do aluno receber um resultado que não poderia corresponder com a situação real dele.

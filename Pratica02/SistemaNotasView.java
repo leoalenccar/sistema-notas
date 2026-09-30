@@ -260,7 +260,7 @@ public class SistemaNotasView {
         }
         System.out.println("Notas guardadas: " + excessoNotas.getNotas());
 
-        // TODO 5.7: acrescente os demais casos de borda.
+        // TODO 5.8: acrescente os demais casos de borda.
 
         Aluno semTipo = AlunoFactory.criar(null, "2026019", "Leonardo Alencar");
         if (semTipo == null) {
