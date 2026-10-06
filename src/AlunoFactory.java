@@ -8,18 +8,6 @@
  * outros lugares o programa trabalha com o tipo Aluno e não pergunta mais
  * nada.
  * 
- * A vantagem de usarmos esse padrão de projeto é que:
- * para adicionar novos tipos de aluno, alteramos apenas este arquivo,
- * mantendo todo o resto do sistema funcionando. Isto é escalável.
- *
- * Todo aluno sai da fábrica como CALOURO: o início do curso dele é a data de
- * referência do sistema (Aluno.ANO_ATUAL e Aluno.MES_ATUAL). Para colocar o
- * aluno em outro ponto do curso, o cliente chama setInicioDoCurso("mes/ano")
- * no objeto devolvido - e não precisa saber de que tipo ele é.
- *
- * ---------------------------------------------------------------------
- * ITEM 4 DA PRÁTICA: complete o metodo criar() e getTiposDisponiveis().
- * ---------------------------------------------------------------------
  */
 public class AlunoFactory {
 
@@ -35,12 +23,10 @@ public class AlunoFactory {
             return new AlunoTecnico(matricula, nome);
         }
 
-        // TODO 4.1: "GRADUACAO" deve criar um AlunoGraduacao.
         if (chave.equals("GRADUACAO")) {
             return new AlunoGraduacao(matricula, nome);
         }
 
-        // TODO 4.2: "POS" deve criar um AlunoPosGraduacao.
         if (chave.equals("POS")) {
             return new AlunoPosGraduacao(matricula, nome);
         }
@@ -49,19 +35,12 @@ public class AlunoFactory {
             return new AlunoIntercambio(matricula, nome);
         }
 
-        // TODO 4.3: quando o tipo nao for reconhecido, imprima um aviso
-        // informando os tipos validos com getTiposDisponiveis() e retorne null.
-
-        // Para pensar: faria sentido implementar switch case aqui?
-
         System.out.println("[aviso] Tipo de aluno nao conhecido: " + tipo + ". Tipos validos: " + getTiposDisponiveis());
 
         return null;
     }
 
     public static String getTiposDisponiveis() {
-        // TODO 4.4: mantenha esta lista em dia conforme voce registra os tipos:
-        // Ex.: "TECNICO, GRADUACAO, NOVO TIPO"
         return "TECNICO, GRADUACAO, POS, INTERCAMBIO";
     }
 }

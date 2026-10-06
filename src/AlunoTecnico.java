@@ -5,8 +5,6 @@
  * Nota final: soma das 4 notas bimestrais dividida por 4.
  * Situação: média >= 6,0 aprovado; caso contrario, recuperação.
  *
- * A classe AlunoTecnico JÁ ESTÁ PRONTA e serve de EXEMPLO para as
- * outras subclasses.
  */
 public class AlunoTecnico extends Aluno {
 
@@ -31,21 +29,14 @@ public class AlunoTecnico extends Aluno {
                     "[aviso] Nota invalida (use um numero de 0 a 10). Nota ignorada: " + valor);
             return;
         }
-        super.lancarNota(valor); // a superclasse guarda a nota na lista
+        super.lancarNota(valor);
     }
 
-    /**
-     * Média do curso técnico. É private porque só interessa aqui dentro: para
-     * o cliente, quem responde é getDesempenho(). Um getMedia() público na
-     * subclasse só serviria a quem fizesse casting - justamente o que este
-     * projeto evita.
-     */
     private double getMedia() {
         double soma = 0.0;
         for (String nota : getNotas()) {
             soma += converterParaNumero(nota);
         }
-        // Divide sempre por 4: bimestre sem nota lançada conta como zero.
         return soma / TOTAL_BIMESTRES;
     }
 
@@ -67,12 +58,6 @@ public class AlunoTecnico extends Aluno {
         return getTempoDecorrido() + "o ano";
     }
 
-    /**
-     * O técnico conta o tempo de curso em ANOS: cada 12 meses decorridos é um
-     * ano completo, e quem acabou de entrar já está no 1o ano - por isso o + 1.
-     * Repare que este é o único lugar da classe que sabe fazer essa conta: o
-     * período, o prazo e o alerta de integralização saem todos daqui.
-     */
     @Override
     public int getTempoDecorrido() {
         return getMesesDecorridos() / 12 + 1;

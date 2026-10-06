@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * resposta neutra: quem sabe responder de verdade é cada subclasse, que
  * SOBRESCREVE o método.
  *
- * A classe Aluno JÁ ESTA PRONTA: não precisa ser alterada.
  */
 public class Aluno {
 
